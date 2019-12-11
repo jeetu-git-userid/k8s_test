@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-html-k8s-deployment
+  labels:
+    app: node
+    version: 2-00
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: nodejs-html-container
+        image: nodejs-html-image
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8081
