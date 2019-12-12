@@ -1,5 +1,9 @@
 echo 'hello'
 pipeline {
+    environment {
+        registryCredential = 'docker_nexus'
+        dockerImage = ''
+    }
     agent any
     stages {
         stage('Checkout k8s_test repo from GITHUB') {
@@ -14,7 +18,7 @@ pipeline {
             steps {
                 sh "whoami"
                 script {
-                    myImage=docker.build("ilutdto353.corp.amdocs.com/sbafna/temp")
+                    dockerImage=docker.build("ilutdto353.corp.amdocs.com/sbafna/temp")
                     sh "docker images | grep ilutdto353"
                 }
             }
@@ -24,7 +28,7 @@ pipeline {
                 sh "date"
                 script {
                     docker.withRegistry( 'http://ilutdto353.corp.amdocs.com', docker_nexus ) {
-                        myImage.push()
+                        dockerImage.push()
                     }
                 }
             }
