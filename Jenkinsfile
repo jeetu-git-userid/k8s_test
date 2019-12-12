@@ -23,7 +23,8 @@ pipeline {
             steps {
                 sh "date"
                 docker.withRegistry( 'http://ilutdto353.corp.amdocs.com', docker_nexus ) {
-                    mIgage.push()
+                    myImage.push()
+                }
             }
         }       
     }
