@@ -7,7 +7,6 @@ pipeline {
                 git branch: 'master',
                 credentialsId: 'jeetu-git-userid',
                 url: 'https://github.com/jeetu-git-userid/k8s_test.git'
-
                 sh "ls -lat"
             }
         }
@@ -16,8 +15,14 @@ pipeline {
                 sh "whoami"
                 script {
                     docker.build("ilutdto353.corp.amdocs.com/sbafna/temp")
+                    sh "docker images | grep ilutdto353"
                 }
             }
         }
+        stage('Upload to Nexus') {
+            steps {
+                sh "date"
+            }
+        }       
     }
 }
