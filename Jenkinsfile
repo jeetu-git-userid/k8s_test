@@ -1,6 +1,7 @@
 echo 'hello'
 pipeline {
     environment {
+        registry = "ilutdto353.corp.amdocs.com/sbafna/temp"
         registryCredential = 'docker_nexus'
         dockerImage = ''
     }
@@ -18,7 +19,7 @@ pipeline {
             steps {
                 sh "whoami"
                 script {
-                    dockerImage=docker.build("ilutdto353.corp.amdocs.com/sbafna/temp")
+                    dockerImage=docker.build registry + ":$BUILD_NUMBER"
                     sh "docker images | grep ilutdto353"
                 }
             }
