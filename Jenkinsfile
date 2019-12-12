@@ -13,7 +13,9 @@ pipeline {
         }
         stage('Build Docker image') {
             steps {
-                docker.build("testImage")
+                script {
+                    docker.build("ilutdto353.corp.amdocs.com/sbafna/temp")
+                }
             }
         }
     }
