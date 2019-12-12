@@ -35,13 +35,9 @@ pipeline {
             }
         }
         stage('Deploy to k8s cluster') {
-            agent {
-                kubernetes {
-                    yamlFile 'nodejs-html-k8s-deployment.yaml'
-                }
-            }
             steps { 
-                sh "kubectl get deployments; hostname -f"
+                sh "kubectl apply -f nodejs-html-k8s-deployment.yaml"
+                sh "kubectl get deployments"
             }
         }
     }
