@@ -13,6 +13,7 @@ pipeline {
         }
         stage('Build Docker image') {
             steps {
+                sh "whoami"
                 script {
                     docker.build("ilutdto353.corp.amdocs.com/sbafna/temp")
                 }
