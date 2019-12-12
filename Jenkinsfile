@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh "date"
                 script {
-                    docker.withRegistry( 'http://ilutdto353.corp.amdocs.com', docker_nexus ) {
+                    docker.withRegistry( 'http://ilutdto353.corp.amdocs.com', registryCredential ) {
                         dockerImage.push()
                     }
                 }
