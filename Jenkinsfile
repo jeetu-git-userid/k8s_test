@@ -40,8 +40,8 @@ pipeline {
                     yamlFile 'nodejs-html-k8s-deployment.yaml'
                 }
             }
-            script {
-                    sh "kubectl get deployments; hostname -f"
+            steps { 
+                sh "kubectl get deployments; hostname -f"
             }
         }
     }
