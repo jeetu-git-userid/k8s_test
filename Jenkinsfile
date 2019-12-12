@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh "whoami"
                 script {
-                    docker.build("ilutdto353.corp.amdocs.com/sbafna/temp")
+                    myImage=docker.build("ilutdto353.corp.amdocs.com/sbafna/temp")
                     sh "docker images | grep ilutdto353"
                 }
             }
@@ -22,6 +22,8 @@ pipeline {
         stage('Upload to Nexus') {
             steps {
                 sh "date"
+                docker.withRegistry( 'http://ilutdto353.corp.amdocs.com', docker_nexus ) {
+                    mIgage.push()
             }
         }       
     }
