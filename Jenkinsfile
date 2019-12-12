@@ -22,8 +22,10 @@ pipeline {
         stage('Upload to Nexus') {
             steps {
                 sh "date"
-                docker.withRegistry( 'http://ilutdto353.corp.amdocs.com', docker_nexus ) {
-                    myImage.push()
+                script {
+                    docker.withRegistry( 'http://ilutdto353.corp.amdocs.com', docker_nexus ) {
+                        myImage.push()
+                    }
                 }
             }
         }       
